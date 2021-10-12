@@ -18,7 +18,7 @@ class BracketMatchTest extends TestCase
     }
 
     /** @test */
-    public function the_return_index_is_two_zero()
+    public function the_return_index_is_twenty()
     {
         $this->assertEquals($this->bracket->findMatchedClosingBracket("a (b c (d e (f) g) h) i (j k)", 2), 20);
     }
