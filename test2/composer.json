@@ -1,0 +1,20 @@
+{
+    "name": "doyoque/test2",
+    "description": "A simple excel file format and data validation",
+    "type": "package",
+    "keywords": ["excel", "package"],
+    "authors": [
+        {
+            "name": "doyoque",
+            "email": "abiyoga1335@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Doyoque\\Excel\\": "src"
+        }
+    },
+    "require": {
+        "phpoffice/phpspreadsheet": "^1.18"
+    }
+}
