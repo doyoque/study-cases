@@ -1,12 +1,14 @@
 <?php
 
+namespace Doyoque\Bracket;
+
 class BracketMatch {
 
     /**
      * @param string $str
      * @param integer $position
      *
-     * @return Integer
+     * @return integer
      */
     public function findMatchedClosingBracket($str, $position)
     {
@@ -31,7 +33,3 @@ class BracketMatch {
         return -1;
     }
 }
-
-var_dump((new BracketMatch)->findMatchedClosingBracket("a (b c (d e (f) g) h) i (j k)", 2)); // 20
-var_dump((new BracketMatch)->findMatchedClosingBracket("a (b ())", 2)); // 7
-
