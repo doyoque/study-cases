@@ -2,29 +2,51 @@
 
 namespace Doyoque\Excel;
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+require_once('vendor/autoload.php');
+
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class ValidateExcel {
 
     /**
-     * @return bool
+     * @var string $format
      */
-    public function shouldBeWork($bool = true)
-    {
-        return $bool;
+    protected $format = "Xlsx";
+
+    /**
+     * @var string $file
+     */
+    protected $file;
+
+    /**
+     * @param string $format
+     * @param string $file
+     */
+    function __construct($format, $file) {
+        $this->format = $format;
+        $this->file = $file;
     }
 
     /**
+     * Create reader of file
+     * 
+     * @param string $file
+     * @param string $format
      * @return mixed
      */
-    public function createSpreadsheet()
+    public function readerExcel()
     {
-        $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue("A1", "Hello world!");
-
-        $writer = new Xlsx($spreadsheet);
-        $writer->save("hello_world.xlsx");
+        return IOFactory::createReader($this->format)->load(realpath(__DIR__ . "/" . $this->file))->getActiveSheet();
     }
 }
+
+$workSheet = new ValidateExcel("Xlsx", "Type_A.xlsx");
+
+$rows = $workSheet->readerExcel()->toArray();
+
+// print_r($missingValue);
+
+foreach ($rows as $index => $value) {
+    print_r($value); echo $index .  "------\n";
+}
+
